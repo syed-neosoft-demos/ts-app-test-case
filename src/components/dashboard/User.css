@@ -1,0 +1,30 @@
+.user .main {
+  background-color: var(--bg-white);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  z-index: 10;
+  border-radius: 7px;
+  margin: 20px 30px;
+}
+.user .main .user-list .list {
+  background-color: #eee;
+  margin-top: 5px;
+  padding: 5px;
+  display: flex;
+  gap: 8px;
+}
+.user .main .user-list .list h6 {
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+user .main .user-list .list p {
+  font-size: 16px;
+  font-weight: 400;
+  padding: 8px;
+  padding-bottom: 8px;
+}
+.user .main .user-list .list img {
+  width: 50px;
+  border-radius: 3px;
+}
