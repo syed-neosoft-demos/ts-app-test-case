@@ -1,4 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
 import Login from "../pages/LoginPage";
 
 describe("Login", () => {
@@ -27,5 +29,28 @@ describe("Login", () => {
     const passElem: HTMLInputElement = screen.getByPlaceholderText(/Enter password/i);
     fireEvent.change(passElem, { target: { value: "Test@1122" } });
     expect(passElem.value).toBe("Test@1122");
+  });
+  test("button working correctly", async () => {
+    render(<Login />);
+    const buttonElement: HTMLInputElement = screen.getByRole("button", { name: "Submit" });
+
+    expect(buttonElement).toHaveValue("Submit");
+    await act(() => {
+      userEvent.click(buttonElement);
+    });
+
+    expect(buttonElement).toHaveValue("Loading...");
+  });
+  test("mock login function", async () => {
+    render(<Login />);
+    const handleLogin = jest.fn();
+    const buttonElement: HTMLInputElement = screen.getByRole("button", { name: "Submit" });
+
+    expect(buttonElement).toHaveValue("Submit");
+    await act(async () => {
+      await userEvent.click(buttonElement);
+    });
+
+    // expect(buttonElement).toHaveBeenCalled();
   });
 });

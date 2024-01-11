@@ -1,4 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import UserList from "../pages/UserListPage";
 
 describe("User Listing", () => {
@@ -9,7 +10,12 @@ describe("User Listing", () => {
   });
   test("should list render", async () => {
     render(<UserList />);
-    const headingElement = await screen.findAllByTestId("user-list");
-    expect(headingElement?.length).toBe(10);
+    await act(async () => {
+      screen.debug();
+      const headingElement = await screen.findAllByTestId("user-list");
+      screen.debug();
+      console.log("headingElement?.length", headingElement?.length);
+      expect(headingElement?.length).toBe(10);
+    });
   });
 });
