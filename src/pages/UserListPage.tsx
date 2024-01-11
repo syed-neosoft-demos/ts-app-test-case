@@ -8,7 +8,6 @@ const UserListPage = () => {
     const getData = async () => {
       try {
         const { data } = await axios.get("https://jsonplaceholder.typicode.com/users");
-        console.log("data?.length", data?.length);
         if (data?.length) setUsers(data);
       } catch (error) {
         console.log("error", error);

@@ -1,4 +1,4 @@
-const data = [
+export const userListData = [
   {
     id: 1,
     name: "Leanne Graham",
@@ -230,8 +230,3 @@ const data = [
     },
   },
 ];
-
-export default {
-  get: jest.fn().mockResolvedValue({ data }),
-  post: jest.fn().mockResolvedValue({ data }),
-};
