@@ -25,14 +25,16 @@ const LoginPage = () => {
           <label htmlFor="email">Email</label>
           <input
             type="text"
+            id="email"
             placeholder="Enter email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="input">
-          <label htmlFor="email">Password</label>
+          <label htmlFor="password">Password</label>
           <input
             type="text"
+            id="password"
             placeholder="Enter password "
             onChange={(e) => setPassword(e.target.value)}
           />

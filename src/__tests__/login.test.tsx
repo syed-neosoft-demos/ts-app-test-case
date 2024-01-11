@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, getRoles, logRoles, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 import Login from "../pages/LoginPage";
@@ -43,14 +43,31 @@ describe("Login", () => {
   });
   test("mock login function", async () => {
     render(<Login />);
-    const handleLogin = jest.fn();
     const buttonElement: HTMLInputElement = screen.getByRole("button", { name: "Submit" });
-
     expect(buttonElement).toHaveValue("Submit");
     await act(async () => {
       await userEvent.click(buttonElement);
     });
 
-    // expect(buttonElement).toHaveBeenCalled();
+    expect(buttonElement).toHaveValue("Loading...");
+  });
+
+  test("mock api", async () => {
+    render(<Login />);
+    const emailElement: HTMLInputElement = screen.getByLabelText(/Email/i);
+    act(() => {
+      userEvent.type(emailElement, "syed-123@yopamil.com");
+    });
+    const passwordElement: HTMLInputElement = screen.getByLabelText(/Password/i);
+    act(() => {
+      userEvent.type(passwordElement, "Test@1234");
+    });
+
+    const buttonElement: HTMLInputElement = screen.getByRole("button", { name: "Submit" });
+    expect(buttonElement).toHaveValue("Submit");
+    await act(async () => {
+      await userEvent.click(buttonElement);
+    });
+    expect(buttonElement).toHaveValue("Loading...");
   });
 });
